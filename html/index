@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jewchetti Secret</title>
 
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="contenedor header">
+      <a href="#" class="logo">✡ JEWCHETTI SECRET</a>
+
+      <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <a href="#" class="carrito">🛍 0</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero" id="inicio">
+      <div class="contenedor">
+        <p>COLECCIÓN 2026</p>
+        <h1>Tradición con estilo.</h1>
+        <p class="texto">
+          Ropa, accesorios y objetos para celebrar la identidad y las tradiciones de esta hermosa comunidad.
+        </p>
+        <a href="#productos" class="boton">Ver productos</a>
+      </div>
+    </section>
+
+    <section class="contenedor seccion" id="productos">
+      <h2>Productos destacados</h2>
+
+      <div class="productos">
+
+        <article class="producto">
+          <div class="imagen">👕</div>
+          <h3>Remera Magen Rallas</h3>
+          <p>$28.500</p>
+          <button>Agregar al carrito</button>
+        </article>
+
+        <article class="producto">
+          <div class="imagen">📿</div>
+          <h3>Collar Estrella de David</h3>
+          <p>$19.900</p>
+          <button>Agregar al carrito</button>
+        </article>
+
+        <article class="producto">
+          <div class="imagen">🕯</div>
+          <h3>Set de Shabat</h3>
+          <p>$45.000</p>
+          <button>Agregar al carrito</button>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="newsletter" id="contacto">
+      <div class="contenedor">
+        <h2>Recibí novedades</h2>
+        <p>Enterate de nuevos productos y promociones.</p>
+
+        <form>
+          <input type="email" placeholder="Tu correo الإلكتروني" required>
+          <button type="submit">Suscribirme</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Jewchetti Secret · Hecho en Tel Aviv</p>
+  </footer>
+
+</body>
+</html>
