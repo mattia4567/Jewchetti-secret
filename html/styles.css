@@ -46,7 +46,7 @@ nav {
 }
 
 nav a:hover {
-  color: #a85640;
+  color: #1e4ed4;
 }
 
 /* Hero */
@@ -94,7 +94,6 @@ button:hover {
   background: #a85640;
 }
 
-/* Productos */
 
 .seccion {
   padding: 70px 0;
@@ -114,11 +113,11 @@ button:hover {
 }
 
 .imagen {
-  background: #e9dfcf;
-  font-size: 80px;
+  background: #c2bebe;
   padding: 45px 10px;
   margin-bottom: 20px;
 }
+
 
 .producto h3 {
   margin-bottom: 10px;
@@ -129,10 +128,9 @@ button:hover {
   margin-bottom: 15px;
 }
 
-/* Newsletter */
 
 .newsletter {
-  background: #a85640;
+  background: #0038A8;
   color: white;
   padding: 60px 0;
   text-align: center;
