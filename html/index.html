@@ -4,91 +4,110 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jewchetti Secret</title>
-
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-  <header>
-    <div class="contenedor header">
-      <a href="#" class="logo">✡ JEWCHETTI SECRET</a>
+<header>
+  <div class="contenedor header">
+    <a href="#" class="logo">✡ JEWCHETTI SECRET</a>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="#" class="carrito" onclick="mostrarCarrito(event)">🛍 <span id="contador">0</span></a>
+  </div>
+</header>
 
-      <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#productos">Productos</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-
-      <a href="#" class="carrito">🛍 0</a>
+<main>
+  <section class="hero" id="inicio">
+    <div class="contenedor">
+      <p>COLECCIÓN 2026</p>
+      <h1>Tradición con estilo.</h1>
+      <p class="texto">Ropa, accesorios y objetos para celebrar la identidad y las tradiciones de esta hermosa comunidad.</p>
+      <a href="#productos" class="boton">Ver productos</a>
     </div>
-  </header>
+  </section>
 
-  <main>
+  <section class="contenedor seccion" id="productos">
+    <h2>Productos destacados</h2>
+    <div class="productos">
+      <article class="producto" data-nombre="Remeras" data-precio="28500">
+        <div class="imagen"><img src="remera.png" alt="Remeras"></div>
+        <h3>Remeras</h3>
+        <p>$28.500</p>
+        <button onclick="agregarCarrito(this)">Agregar al carrito</button>
+      </article>
+      <article class="producto" data-nombre="Collar Estrella de David" data-precio="19900">
+        <div class="imagen"><img src="collar.png" alt="Collar"></div>
+        <h3>Collar Estrella de David</h3>
+        <p>$19.900</p>
+        <button onclick="agregarCarrito(this)">Agregar al carrito</button>
+      </article>
+      <article class="producto" data-nombre="Pijama SHABAT" data-precio="45000">
+        <div class="imagen"><img src="pijama.png" alt="Pijama"></div>
+        <h3>Pijama SHABAT</h3>
+        <p>$45.000</p>
+        <button onclick="agregarCarrito(this)">Agregar al carrito</button>
+      </article>
+    </div>
+  </section>
 
-    <section class="hero" id="inicio">
-      <div class="contenedor">
-        <p>COLECCIÓN 2026</p>
-        <h1>Tradición con estilo.</h1>
-        <p class="texto">
-          Ropa, accesorios y objetos para celebrar la identidad y las tradiciones de esta hermosa comunidad.
-        </p>
-        <a href="#productos" class="boton">Ver productos</a>
-      </div>
-    </section>
+  <section class="newsletter" id="contacto">
+    <div class="contenedor">
+      <h2>Recibí novedades</h2>
+      <p>Enterate de nuevos productos y promociones.</p>
+      <form onsubmit="event.preventDefault(); this.innerHTML='<p>¡Gracias por suscribirte!</p>';">
+        <input type="email" placeholder="Tu correo electrónico" required>
+        <button type="submit">Suscribirme</button>
+      </form>
+    </div>
+  </section>
+</main>
 
-    <section class="contenedor seccion" id="productos">
-      <h2>Productos destacados</h2>
+<div id="carrito-panel" class="carrito-panel">
+  <div class="carrito-contenido">
+    <h3>Carrito</h3>
+    <ul id="lista-carrito"></ul>
+    <p id="total-carrito"><strong>Total: $0</strong></p>
+    <button onclick="vaciarCarrito()">Vaciar</button>
+    <button onclick="cerrarCarrito()">Cerrar</button>
+  </div>
+</div>
 
-      <div class="productos">
+<footer>
+  <p>© 2026 Jewchetti Secret · Hecho con ❤️ desde Israel</p>
+</footer>
 
-        <article class="producto">
-          <div class="imagen">
-            <img src="remera.png" alt="">
-          </div>
-          <h3>Remeras</h3>
-          <p>$28.500</p>
-          <button>Agregar al carrito</button>
-        </article>
-
-        <article class="producto">
-          <div class="imagen">
-            <img src="collar.png" alt="">
-          </div>
-          <h3>Collar Estrella de David</h3>
-          <p>$19.900</p>
-          <button>Agregar al carrito</button>
-        </article>
-
-        <article class="producto">
-          <div class="imagen">
-            <img src="pijama.png" alt="pijama">
-          </div>
-          <h3>Pijama SHABAT</h3>
-          <p>$45.000</p>
-          <button>Agregar al carrito</button>
-        </article>
-
-      </div>
-    </section>
-
-    <section class="newsletter" id="contacto">
-      <div class="contenedor">
-        <h2>Recibí novedades</h2>
-        <p>Enterate de nuevos productos y promociones.</p>
-
-        <form>
-          <input type="email" placeholder="Tu correo الإلكتروني" required>
-          <button type="submit">Suscribirme</button>
-        </form>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>© 2026 Jewchetti Secret · Hecho en Tel Aviv</p>
-  </footer>
+<script>
+  let carrito = [];
+  function agregarCarrito(btn) {
+    const art = btn.closest('.producto');
+    const nombre = art.dataset.nombre;
+    const precio = parseInt(art.dataset.precio);
+    carrito.push({nombre, precio});
+    document.getElementById('contador').textContent = carrito.length;
+    alert('Agregado: ' + nombre);
+  }
+  function mostrarCarrito(e) {
+    e.preventDefault();
+    const panel = document.getElementById('carrito-panel');
+    const lista = document.getElementById('lista-carrito');
+    lista.innerHTML = '';
+    let total = 0;
+    carrito.forEach((item, i) => {
+      total += item.precio;
+      const li = document.createElement('li');
+      li.textContent = item.nombre + ' - $' + item.precio.toLocaleString();
+      lista.appendChild(li);
+    });
+    document.getElementById('total-carrito').innerHTML = '<strong>Total: $' + total.toLocaleString() + '</strong>';
+    panel.style.display = 'flex';
+  }
+  function cerrarCarrito() { document.getElementById('carrito-panel').style.display = 'none'; }
+  function vaciarCarrito() { carrito = []; document.getElementById('contador').textContent = '0'; cerrarCarrito(); }
+</script>
 
 </body>
 </html>
