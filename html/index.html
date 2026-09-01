@@ -6,108 +6,306 @@
   <title>Jewchetti Secret</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-<header>
-  <div class="contenedor header">
-    <a href="#" class="logo">✡ JEWCHETTI SECRET</a>
-    <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#productos">Productos</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-    <a href="#" class="carrito" onclick="mostrarCarrito(event)">🛍 <span id="contador">0</span></a>
+  <!-- =====================================================
+       PANTALLA DE INICIO
+       Se muestra al abrir la página.
+       Al tocar "Entrar a la tienda", comienza el audio
+       y se muestra el contenido completo del sitio.
+       ===================================================== -->
+  <section id="pantallaBienvenida" class="pantalla-bienvenida">
+    <div class="fondo-bienvenida"></div>
+
+    <div class="bienvenida-contenido">
+      <img
+        src="milei-israel.jpg"
+        alt="Imagen de bienvenida a Jewchetti Secret"
+        class="bienvenida-img"
+      >
+
+      <div class="bienvenida-texto">
+        <p class="bienvenida-subtitulo">✡ JEWCHETTI SECRET</p>
+
+        <h1>Bienvenido a nuestra tienda</h1>
+
+        <p>
+          Indumentaria, accesorios y tradición judía para celebrar tu identidad
+          con estilo.
+        </p>
+
+        <button id="btnContinuar" type="button" onclick="continuarTienda()">
+          Entrar a la tienda
+        </button>
+
+        <p id="mensajeAudio" class="mensaje-audio">
+          Presioná el botón para ingresar con música.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audio de bienvenida -->
+  <!-- preload="auto" intenta cargar el audio antes de ingresar -->
+  <audio id="audioBienvenida" loop preload="auto">
+    <source src="Hava Nagila Original.mp3" type="audio/mpeg">
+    Tu navegador no soporta la reproducción de audio.
+  </audio>
+
+  <!-- =====================================================
+       CONTENIDO PRINCIPAL
+       Está oculto hasta que se presiona "Entrar a la tienda".
+       ===================================================== -->
+  <div id="contenidoWeb" class="contenido-web oculto">
+
+    <header>
+      <div class="contenedor header">
+        <a href="#inicio" class="logo">✡ JEWCHETTI SECRET</a>
+
+        <nav>
+          <a href="#inicio">Inicio</a>
+          <a href="#productos">Productos</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+
+        <a href="#" class="carrito" onclick="mostrarCarrito(event)">
+          🛍 <span id="contador">0</span>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="contenedor">
+          <p class="coleccion">COLECCIÓN 2026</p>
+
+          <h1>Tradición con estilo.</h1>
+
+          <p class="texto">
+            Ropa, accesorios y objetos para celebrar la identidad y las
+            tradiciones de una comunidad con historia, cultura y estilo.
+          </p>
+
+          <a href="#productos" class="boton">Ver productos</a>
+        </div>
+      </section>
+
+      <section class="contenedor seccion" id="productos">
+        <h2>Productos destacados</h2>
+
+        <div class="productos">
+
+          <article class="producto" data-nombre="Remeras" data-precio="28500">
+            <div class="imagen">
+              <img src="remera.png" alt="Remeras">
+            </div>
+
+            <h3>Remeras</h3>
+            <p>$28.500</p>
+
+            <button type="button" onclick="agregarCarrito(this)">
+              Agregar al carrito
+            </button>
+          </article>
+
+          <article
+            class="producto"
+            data-nombre="Collar Estrella de David"
+            data-precio="19900"
+          >
+            <div class="imagen">
+              <img src="collar.png" alt="Collar Estrella de David">
+            </div>
+
+            <h3>Collar Estrella de David</h3>
+            <p>$19.900</p>
+
+            <button type="button" onclick="agregarCarrito(this)">
+              Agregar al carrito
+            </button>
+          </article>
+
+          <article
+            class="producto"
+            data-nombre="Pijama SHABAT"
+            data-precio="45000"
+          >
+            <div class="imagen">
+              <img src="pijama.png" alt="Pijama SHABAT">
+            </div>
+
+            <h3>Pijama SHABAT</h3>
+            <p>$45.000</p>
+
+            <button type="button" onclick="agregarCarrito(this)">
+              Agregar al carrito
+            </button>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="newsletter" id="contacto">
+        <div class="contenedor">
+          <h2>Recibí novedades</h2>
+
+          <p>Enterate de nuevos productos, lanzamientos y promociones.</p>
+
+          <form
+            onsubmit="event.preventDefault(); mostrarMensajeSuscripcion(this);"
+          >
+            <input
+              type="email"
+              placeholder="Tu correo electrónico"
+              required
+            >
+
+            <button type="submit">Suscribirme</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- Panel lateral del carrito -->
+    <div id="carrito-panel" class="carrito-panel">
+      <div class="carrito-contenido">
+        <button
+          type="button"
+          class="cerrar-carrito"
+          onclick="cerrarCarrito()"
+          aria-label="Cerrar carrito"
+        >
+          ×
+        </button>
+
+        <h3>Tu carrito</h3>
+
+        <ul id="lista-carrito"></ul>
+
+        <p id="total-carrito">
+          <strong>Total: $0</strong>
+        </p>
+
+        <div class="botones-carrito">
+          <button type="button" onclick="vaciarCarrito()">
+            Vaciar carrito
+          </button>
+
+          <button type="button" onclick="cerrarCarrito()">
+            Seguir comprando
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2026 Jewchetti Secret · Hecho con ❤️ desde Israel</p>
+    </footer>
+
   </div>
-</header>
 
-<main>
-  <section class="hero" id="inicio">
-    <div class="contenedor">
-      <p>COLECCIÓN 2026</p>
-      <h1>Tradición con estilo.</h1>
-      <p class="texto">Ropa, accesorios y objetos para celebrar la identidad y las tradiciones de esta hermosa comunidad.</p>
-      <a href="#productos" class="boton">Ver productos</a>
-    </div>
-  </section>
+  <script>
+    let carrito = [];
 
-  <section class="contenedor seccion" id="productos">
-    <h2>Productos destacados</h2>
-    <div class="productos">
-      <article class="producto" data-nombre="Remeras" data-precio="28500">
-        <div class="imagen"><img src="remera.png" alt="Remeras"></div>
-        <h3>Remeras</h3>
-        <p>$28.500</p>
-        <button onclick="agregarCarrito(this)">Agregar al carrito</button>
-      </article>
-      <article class="producto" data-nombre="Collar Estrella de David" data-precio="19900">
-        <div class="imagen"><img src="collar.png" alt="Collar"></div>
-        <h3>Collar Estrella de David</h3>
-        <p>$19.900</p>
-        <button onclick="agregarCarrito(this)">Agregar al carrito</button>
-      </article>
-      <article class="producto" data-nombre="Pijama SHABAT" data-precio="45000">
-        <div class="imagen"><img src="pijama.png" alt="Pijama"></div>
-        <h3>Pijama SHABAT</h3>
-        <p>$45.000</p>
-        <button onclick="agregarCarrito(this)">Agregar al carrito</button>
-      </article>
-    </div>
-  </section>
+    /*
+      Esta función se activa al presionar el botón de la portada.
+      El clic del usuario permite que el navegador reproduzca el audio.
+    */
+    function continuarTienda() {
+      const pantallaBienvenida = document.getElementById("pantallaBienvenida");
+      const contenidoWeb = document.getElementById("contenidoWeb");
+      const audio = document.getElementById("audioBienvenida");
+      const mensajeAudio = document.getElementById("mensajeAudio");
 
-  <section class="newsletter" id="contacto">
-    <div class="contenedor">
-      <h2>Recibí novedades</h2>
-      <p>Enterate de nuevos productos y promociones.</p>
-      <form onsubmit="event.preventDefault(); this.innerHTML='<p>¡Gracias por suscribirte!</p>';">
-        <input type="email" placeholder="Tu correo electrónico" required>
-        <button type="submit">Suscribirme</button>
-      </form>
-    </div>
-  </section>
-</main>
+      audio.volume = 0.35;
 
-<div id="carrito-panel" class="carrito-panel">
-  <div class="carrito-contenido">
-    <h3>Carrito</h3>
-    <ul id="lista-carrito"></ul>
-    <p id="total-carrito"><strong>Total: $0</strong></p>
-    <button onclick="vaciarCarrito()">Vaciar</button>
-    <button onclick="cerrarCarrito()">Cerrar</button>
-  </div>
-</div>
+      audio.play()
+        .then(function () {
+          console.log("El audio comenzó correctamente.");
+        })
+        .catch(function (error) {
+          console.log("No se pudo reproducir el audio:", error);
 
-<footer>
-  <p>© 2026 Jewchetti Secret · Hecho con ❤️ desde Israel</p>
-</footer>
+          mensajeAudio.textContent =
+            "No se pudo iniciar la música. Verificá que el archivo MP3 esté en la misma carpeta que index.html.";
+        });
 
-<script>
-  let carrito = [];
-  function agregarCarrito(btn) {
-    const art = btn.closest('.producto');
-    const nombre = art.dataset.nombre;
-    const precio = parseInt(art.dataset.precio);
-    carrito.push({nombre, precio});
-    document.getElementById('contador').textContent = carrito.length;
-    alert('Agregado: ' + nombre);
-  }
-  function mostrarCarrito(e) {
-    e.preventDefault();
-    const panel = document.getElementById('carrito-panel');
-    const lista = document.getElementById('lista-carrito');
-    lista.innerHTML = '';
-    let total = 0;
-    carrito.forEach((item, i) => {
-      total += item.precio;
-      const li = document.createElement('li');
-      li.textContent = item.nombre + ' - $' + item.precio.toLocaleString();
-      lista.appendChild(li);
-    });
-    document.getElementById('total-carrito').innerHTML = '<strong>Total: $' + total.toLocaleString() + '</strong>';
-    panel.style.display = 'flex';
-  }
-  function cerrarCarrito() { document.getElementById('carrito-panel').style.display = 'none'; }
-  function vaciarCarrito() { carrito = []; document.getElementById('contador').textContent = '0'; cerrarCarrito(); }
-</script>
+      pantallaBienvenida.classList.add("salir-bienvenida");
+
+      setTimeout(function () {
+        pantallaBienvenida.style.display = "none";
+        contenidoWeb.classList.remove("oculto");
+        window.scrollTo(0, 0);
+      }, 500);
+    }
+
+    function agregarCarrito(btn) {
+      const articulo = btn.closest(".producto");
+      const nombre = articulo.dataset.nombre;
+      const precio = parseInt(articulo.dataset.precio);
+
+      carrito.push({
+        nombre: nombre,
+        precio: precio
+      });
+
+      document.getElementById("contador").textContent = carrito.length;
+
+      alert("Agregado al carrito: " + nombre);
+    }
+
+    function mostrarCarrito(event) {
+      event.preventDefault();
+
+      const panel = document.getElementById("carrito-panel");
+      const lista = document.getElementById("lista-carrito");
+      const totalCarrito = document.getElementById("total-carrito");
+
+      lista.innerHTML = "";
+
+      let total = 0;
+
+      if (carrito.length === 0) {
+        const itemVacio = document.createElement("li");
+        itemVacio.className = "carrito-vacio";
+        itemVacio.textContent = "Todavía no agregaste productos.";
+        lista.appendChild(itemVacio);
+      } else {
+        carrito.forEach(function (item) {
+          total += item.precio;
+
+          const li = document.createElement("li");
+
+          li.innerHTML =
+            "<span>" + item.nombre + "</span>" +
+            "<strong>$" + item.precio.toLocaleString("es-AR") + "</strong>";
+
+          lista.appendChild(li);
+        });
+      }
+
+      totalCarrito.innerHTML =
+        "<strong>Total: $" + total.toLocaleString("es-AR") + "</strong>";
+
+      panel.style.display = "flex";
+    }
+
+    function cerrarCarrito() {
+      document.getElementById("carrito-panel").style.display = "none";
+    }
+
+    function vaciarCarrito() {
+      carrito = [];
+      document.getElementById("contador").textContent = "0";
+      cerrarCarrito();
+    }
+
+    function mostrarMensajeSuscripcion(formulario) {
+      formulario.innerHTML =
+        "<p class='mensaje-suscripcion'>¡Gracias por suscribirte a Jewchetti Secret!</p>";
+    }
+  </script>
 
 </body>
 </html>
