@@ -9,4 +9,4 @@ integrantes:
 lenguajes:
 -HTML
 -CSS
--PHP
+-SQL
