@@ -1,6 +1,4 @@
-/* =========================
-   CONFIGURACIÓN GENERAL
-   ========================= */
+
 
 * {
   box-sizing: border-box;
@@ -33,9 +31,6 @@ button {
   cursor: pointer;
 }
 
-/* =========================
-   PANTALLA DE BIENVENIDA
-   ========================= */
 
 .pantalla-bienvenida {
   position: fixed;
@@ -153,10 +148,6 @@ button {
   display: none;
 }
 
-/* =========================
-   CONTENEDOR Y ENCABEZADO
-   ========================= */
-
 .contenedor {
   width: 90%;
   max-width: 1100px;
@@ -217,9 +208,6 @@ nav a:hover {
   transform: translateY(-1px);
 }
 
-/* =========================
-   HERO
-   ========================= */
 
 .hero {
   padding: 110px 0;
@@ -266,9 +254,6 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
-/* =========================
-   PRODUCTOS
-   ========================= */
 
 .seccion {
   padding: 74px 0;
@@ -348,9 +333,7 @@ nav a:hover {
   color: #0a1f44;
 }
 
-/* =========================
-   NEWSLETTER Y PIE
-   ========================= */
+
 
 .newsletter {
   padding: 64px 0;
@@ -414,9 +397,7 @@ footer {
   text-align: center;
 }
 
-/* =========================
-   CARRITO
-   ========================= */
+
 
 .carrito-panel {
   position: fixed;
@@ -489,9 +470,7 @@ footer {
   gap: 10px;
 }
 
-/* =========================
-   VERSIÓN MÓVIL
-   ========================= */
+
 
 @media (max-width: 800px) {
   .bienvenida-contenido {
