@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remeras | Jewchetti Secret</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="contenedor header">
+      <a href="index.html" class="logo">
+        ✡ JEWCHETTI SECRET
+      </a>
+      <a href="#" class="carrito" onclick="mostrarCarrito(event)">
+         <span id="contador">0</span>
+      </a>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="contenedor">
+        <p class="coleccion">
+          COLECCIÓN 2026
+        </p>
+        <h1>
+          Remeras
+        </h1>
+        <p class="texto">
+          Descubrí nuestra colección de remeras inspiradas
+          en la cultura y tradición judía.
+        </p>
+      </div>
+    </section>
+    <section class="contenedor seccion">
+      <h2>
+        Nuestra colección
+      </h2>
+      <div class="productos">
+        <article
+          class="producto"
+          data-nombre="Remera Estrella de David"
+          data-precio="28500"
+        >
+          <div class="imagen">
+            <img
+              src="remera.png"
+              alt="Remera Estrella de David"
+            >
+          </div>
+          <h3>
+            Remera Estrella de David
+          </h3>
+          <p>
+            $28.500
+          </p>
+          <button
+            type="button"
+            onclick="agregarCarrito(this)"
+          >
+            Agregar al carrito
+          </button>
+
+        </article>
+        <article
+          class="producto"
+          data-nombre="Remera JEWCHETTI"
+          data-precio="30000"
+        >
+          <div class="imagen">
+            <img
+              src="remera2.png"
+              alt="Remera Jewchetti"
+            >
+          </div>
+          <h3>
+            Remera JEWCHETTI
+          </h3>
+          <p>
+            $30.000
+          </p>
+          <button
+            type="button"
+            onclick="agregarCarrito(this)"
+          >
+            Agregar al carrito
+          </button>
+        </article>
+        <article
+          class="producto"
+          data-nombre="Remera Israel"
+          data-precio="32000"
+        >
+          <div class="imagen">
+            <img
+              src="remera3.png"
+              alt="Remera Israel"
+            >
+          </div>
+          <h3>
+            Remera Israel
+          </h3>
+          <p>
+            $32.000
+          </p>
+          <button
+            type="button"
+            onclick="agregarCarrito(this)"
+          >
+            Agregar al carrito
+          </button>
+
+        </article>
+      </div>
+
+    </section>
+
+    <section class="newsletter">
+
+      <div class="contenedor">
+        <h2>
+          ¿Querés ver otras categorías?
+        </h2>
+        <p>
+          Volvé a la página principal para seguir explorando Jewchetti Secret.
+        </p>
+        <a
+          href="index.html"
+          class="boton"
+        >
+          Volver a la tienda
+        </a>
+      </div>
+    </section>
+  </main>
+  <div
+    id="carrito-panel"
+    class="carrito-panel"
+  >
+    <div class="carrito-contenido">
+      <button
+        type="button"
+        class="cerrar-carrito"
+        onclick="cerrarCarrito()"
+        aria-label="Cerrar carrito"
+      >
+        ×
+      </button>
+
+      <h3>
+        Tu carrito
+      </h3>
+      <ul id="lista-carrito"></ul>
+      <p id="total-carrito">
+        <strong>Total: $0</strong>
+      </p>
+      <div class="botones-carrito">
+        <button
+          type="button"
+          onclick="vaciarCarrito()"
+        >
+          Vaciar carrito
+        </button>
+        <button
+          type="button"
+          onclick="cerrarCarrito()"
+        >
+          Seguir comprando
+        </button>
+      </div>
+    </div>
+  </div>
+  <script>
+    let carrito = [];
+    function agregarCarrito(btn) {
+      const articulo =
+        btn.closest(".producto");
+      const nombre =
+        articulo.dataset.nombre;
+      const precio =
+        parseInt(articulo.dataset.precio);
+      carrito.push({
+        nombre: nombre,
+        precio: precio
+      });
+      document.getElementById(
+        "contador"
+      ).textContent = carrito.length;
+      alert(
+        "Agregado al carrito: " + nombre
+      );
+    }
+    function mostrarCarrito(event) {
+      event.preventDefault();
+      const panel =
+        document.getElementById(
+          "carrito-panel"
+        );
+      const lista =
+        document.getElementById(
+          "lista-carrito"
+        );
+      const totalCarrito =
+        document.getElementById(
+          "total-carrito"
+        );
+      lista.innerHTML = "";
+      let total = 0;
+      if (carrito.length === 0) {
+        const itemVacio =
+          document.createElement("li");
+        itemVacio.className =
+          "carrito-vacio";
+        itemVacio.textContent =
+          "Todavía no agregaste productos.";
+        lista.appendChild(itemVacio);
+      } else {
+        carrito.forEach(function (item) {
+          total += item.precio;
+          const li =
+            document.createElement("li");
+          li.innerHTML =
+            "<span>" +
+            item.nombre +
+            "</span>" +
+            "<strong>$" +
+            item.precio.toLocaleString("es-AR") +
+            "</strong>";
+          lista.appendChild(li);
+        });
+      }
+      totalCarrito.innerHTML =
+        "<strong>Total: $" +
+        total.toLocaleString("es-AR") +
+        "</strong>";
+      panel.style.display = "flex";
+    }
+    function cerrarCarrito() {
+      document.getElementById(
+        "carrito-panel"
+      ).style.display = "none";
+    }
+    function vaciarCarrito() {
+      carrito = [];
+      document.getElementById(
+        "contador"
+      ).textContent = "0";
+      cerrarCarrito();
+    }
+  </script>
+</body>
+</html>
+
