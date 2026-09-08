@@ -156,176 +156,99 @@
         <strong>Total: $0</strong>
       </p>
       <div class="botones-carrito">
-
         <button
           type="button"
           onclick="vaciarCarrito()"
         >
           Vaciar carrito
         </button>
-
         <button
           type="button"
           onclick="cerrarCarrito()"
         >
           Seguir comprando
         </button>
-
       </div>
-
     </div>
-
   </div>
-
-
-  <!-- JAVASCRIPT -->
   <script>
-
     let carrito = [];
-
-
-    // AGREGAR PRODUCTO
     function agregarCarrito(btn) {
-
       const articulo =
         btn.closest(".producto");
-
       const nombre =
         articulo.dataset.nombre;
-
       const precio =
         parseInt(articulo.dataset.precio);
-
-
       carrito.push({
-
         nombre: nombre,
-
         precio: precio
-
       });
-
-
       document.getElementById(
         "contador"
       ).textContent = carrito.length;
-
-
       alert(
         "Agregado al carrito: " + nombre
       );
-
     }
-
-
-    // MOSTRAR CARRITO
     function mostrarCarrito(event) {
-
       event.preventDefault();
-
-
       const panel =
         document.getElementById(
           "carrito-panel"
         );
-
       const lista =
         document.getElementById(
           "lista-carrito"
         );
-
       const totalCarrito =
         document.getElementById(
           "total-carrito"
         );
-
-
       lista.innerHTML = "";
-
-
       let total = 0;
-
-
       if (carrito.length === 0) {
-
         const itemVacio =
           document.createElement("li");
-
         itemVacio.className =
           "carrito-vacio";
-
         itemVacio.textContent =
           "Todavía no agregaste productos.";
-
         lista.appendChild(itemVacio);
-
       } else {
-
         carrito.forEach(function (item) {
-
           total += item.precio;
-
-
           const li =
             document.createElement("li");
-
-
           li.innerHTML =
             "<span>" +
             item.nombre +
             "</span>" +
-
             "<strong>$" +
             item.precio.toLocaleString("es-AR") +
             "</strong>";
-
-
           lista.appendChild(li);
-
         });
-
       }
-
-
       totalCarrito.innerHTML =
         "<strong>Total: $" +
         total.toLocaleString("es-AR") +
         "</strong>";
-
-
       panel.style.display = "flex";
-
     }
-
-
-    // CERRAR CARRITO
     function cerrarCarrito() {
-
       document.getElementById(
         "carrito-panel"
       ).style.display = "none";
-
     }
-
-
-    // VACIAR CARRITO
     function vaciarCarrito() {
-
       carrito = [];
-
-
       document.getElementById(
         "contador"
       ).textContent = "0";
-
-
       cerrarCarrito();
-
     }
-
   </script>
-
 </body>
-
 </html>
-```
+
