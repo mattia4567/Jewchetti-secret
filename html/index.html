@@ -7,13 +7,15 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
+
 <body>
+
 
   <section id="pantallaBienvenida" class="pantalla-bienvenida">
     <div class="fondo-bienvenida"></div>
     <div class="bienvenida-contenido">
       <img
-        src="milei-israel.jpg"
+        src="banderainicioweb.png"
         alt="Imagen de bienvenida a Jewchetti Secret"
         class="bienvenida-img"
       >
@@ -29,6 +31,7 @@
         <button id="btnContinuar" type="button" onclick="continuarTienda()">
           Entrar a la tienda
         </button>
+
 
         <p id="mensajeAudio" class="mensaje-audio">
           Presioná el botón para ingresar con música.
@@ -74,7 +77,7 @@
           <a href="remeras.html" class="producto">
             <div class="imagen">
               <img
-                src="remera.png"
+                src="remeranueva.png"
                 alt="Remeras"
               >
             </div>
@@ -95,43 +98,56 @@
           </a>
           <a href="libros.html" class="producto">
 
+
             <div class="imagen">
+
 
               <img
                 src="descarga.png"
                 alt="Libros"
               >
 
+
             </div>
+
 
             <h3>
               Libros
             </h3>
 
+
           </a>
+
 
 
         </div>
 
+
       </section>
+
 
 
       <!-- DONACIONES -->
       <section class="newsletter" id="contacto">
 
+
         <div class="contenedor">
+
 
           <h2>
             Donaciones
           </h2>
 
+
           <p>
             Enterate de nuevos productos, lanzamientos y promociones.
           </p>
 
+
           <form
             onsubmit="event.preventDefault(); mostrarMensajeSuscripcion(this);"
           >
+
 
             <input
               type="email"
@@ -139,23 +155,31 @@
               required
             >
 
+
             <button type="submit">
               Donar
             </button>
 
+
           </form>
+
 
         </div>
 
+
       </section>
 
+
     </main>
+
 
 
     <!-- CARRITO -->
     <div id="carrito-panel" class="carrito-panel">
 
+
       <div class="carrito-contenido">
+
 
         <button
           type="button"
@@ -166,17 +190,22 @@
           ×
         </button>
 
+
         <h3>
           Tu carrito
         </h3>
 
+
         <ul id="lista-carrito"></ul>
+
 
         <p id="total-carrito">
           <strong>Total: $0</strong>
         </p>
 
+
         <div class="botones-carrito">
+
 
           <button
             type="button"
@@ -185,6 +214,7 @@
             Vaciar carrito
           </button>
 
+
           <button
             type="button"
             onclick="cerrarCarrito()"
@@ -192,71 +222,91 @@
             Seguir comprando
           </button>
 
+
         </div>
+
 
       </div>
 
+
     </div>
+
 
 
     <!-- FOOTER -->
     <footer>
 
+
       <p>
         © 2026 Jewchetti Secret · Hecho con ❤️ desde Israel
       </p>
 
+
     </footer>
 
+
   </div>
+
 
 
   <!-- JAVASCRIPT -->
   <script>
 
+
     let carrito = [];
+
 
 
     // ENTRAR A LA TIENDA
     function continuarTienda() {
 
+
       const pantallaBienvenida =
         document.getElementById("pantallaBienvenida");
+
 
       const contenidoWeb =
         document.getElementById("contenidoWeb");
 
+
       const audio =
         document.getElementById("audioBienvenida");
+
 
       const mensajeAudio =
         document.getElementById("mensajeAudio");
 
 
+
       audio.volume = 0.35;
 
 
-      audio.play()
 
+      audio.play()
         .then(function () {
+
 
           console.log(
             "El audio comenzó correctamente."
           );
 
-        })
 
+        })
         .catch(function (error) {
+
 
           console.log(
             "No se pudo reproducir el audio:",
             error
           );
 
+
           mensajeAudio.textContent =
             "No se pudo iniciar la música. Verificá que el archivo MP3 esté en la misma carpeta que index.html.";
 
+
         });
+
 
 
       pantallaBienvenida.classList.add(
@@ -264,96 +314,130 @@
       );
 
 
+
       setTimeout(function () {
+
 
         pantallaBienvenida.style.display = "none";
 
+
         contenidoWeb.classList.remove("oculto");
+
 
         window.scrollTo(0, 0);
 
+
       }, 500);
 
+
     }
+
 
 
     // AGREGAR AL CARRITO
     function agregarCarrito(btn) {
 
+
       const articulo =
         btn.closest(".producto");
 
+
       const nombre =
         articulo.dataset.nombre;
+
 
       const precio =
         parseInt(articulo.dataset.precio);
 
 
+
       carrito.push({
+
 
         nombre: nombre,
 
+
         precio: precio
 
+
       });
+
 
 
       document.getElementById("contador").textContent =
         carrito.length;
 
 
+
       alert(
         "Agregado al carrito: " + nombre
       );
 
+
     }
+
 
 
     // MOSTRAR CARRITO
     function mostrarCarrito(event) {
 
+
       event.preventDefault();
+
 
 
       const panel =
         document.getElementById("carrito-panel");
 
+
       const lista =
         document.getElementById("lista-carrito");
+
 
       const totalCarrito =
         document.getElementById("total-carrito");
 
 
+
       lista.innerHTML = "";
+
 
 
       let total = 0;
 
 
+
       if (carrito.length === 0) {
+
 
         const itemVacio =
           document.createElement("li");
 
+
         itemVacio.className =
           "carrito-vacio";
+
 
         itemVacio.textContent =
           "Todavía no agregaste productos.";
 
+
         lista.appendChild(itemVacio);
+
 
       } else {
 
+
         carrito.forEach(function (item) {
+
 
           total += item.precio;
 
 
+
           const li =
             document.createElement("li");
+
 
 
           li.innerHTML =
@@ -361,16 +445,21 @@
             item.nombre +
             "</span>" +
 
+
             "<strong>$" +
             item.precio.toLocaleString("es-AR") +
             "</strong>";
 
 
+
           lista.appendChild(li);
+
 
         });
 
+
       }
+
 
 
       totalCarrito.innerHTML =
@@ -379,25 +468,33 @@
         "</strong>";
 
 
+
       panel.style.display = "flex";
 
+
     }
+
 
 
     // CERRAR CARRITO
     function cerrarCarrito() {
 
+
       document.getElementById(
         "carrito-panel"
       ).style.display = "none";
 
+
     }
+
 
 
     // VACIAR CARRITO
     function vaciarCarrito() {
 
+
       carrito = [];
+
 
 
       document.getElementById(
@@ -405,23 +502,29 @@
       ).textContent = "0";
 
 
+
       cerrarCarrito();
+
 
     }
 
 
+
     // MENSAJE DE DONACIÓN
     function mostrarMensajeSuscripcion(formulario) {
+
 
       formulario.innerHTML =
         "<p class='mensaje-suscripcion'>" +
         "¡Gracias por suscribirte a Jewchetti Secret!" +
         "</p>";
 
+
     }
+
 
   </script>
 
+
 </body>
 </html>
-```
