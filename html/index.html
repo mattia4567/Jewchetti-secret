@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DOROT</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
-
 <body>
-
 
   <section id="pantallaBienvenida" class="pantalla-bienvenida">
     <div class="fondo-bienvenida"></div>
     <div class="bienvenida-contenido">
       <img
         src="banderainicioweb.png"
-        alt="Imagen de bienvenida a Jewchetti Secret"
+        alt="Imagen de bienvenida a DOROT"
         class="bienvenida-img"
-      >
+      />
       <div class="bienvenida-texto">
         <p class="bienvenida-subtitulo">
           ✡ DOROT
@@ -32,28 +30,56 @@
           Entrar a la tienda
         </button>
 
-
         <p id="mensajeAudio" class="mensaje-audio">
           Presioná el botón para ingresar con música.
         </p>
       </div>
     </div>
   </section>
+
   <audio id="audioBienvenida" loop preload="auto">
-    <source src="Hava Nagila Original.mp3" type="audio/mpeg">
+    <source src="Hava Nagila Original.mp3" type="audio/mpeg" />
     Tu navegador no soporta la reproducción de audio.
   </audio>
+
   <div id="contenidoWeb" class="contenido-web oculto">
+
     <header>
       <div class="contenedor header">
         <a href="index.html" class="logo">
           ✡ DOROT
         </a>
-        <a href="#" class="carrito" onclick="mostrarCarrito(event)">
-          <span id="contador">0</span>
-        </a>
+
+        <nav class="menu-principal">
+          <a href="#inicio">Inicio</a>
+          <a href="#productos">Productos</a>
+          <a href="#contacto">Donaciones</a>
+        </nav>
+
+        <div class="header-derecha">
+          <button
+            type="button"
+            class="btn-header"
+            id="btnLogin"
+            onclick="abrirPanelLogin()"
+          >
+            Iniciar sesión
+          </button>
+          <button
+            type="button"
+            class="btn-header btn-crear-cuenta"
+            id="btnCrearCuenta"
+            onclick="abrirPanelRegistro()"
+          >
+            Crear cuenta
+          </button>
+          <a href="#" class="carrito" onclick="mostrarCarrito(event)">
+            <span id="contador">0</span>
+          </a>
+        </div>
       </div>
     </header>
+
     <main>
       <section class="hero" id="inicio">
         <div class="contenedor">
@@ -69,6 +95,7 @@
           </p>
         </div>
       </section>
+
       <section class="contenedor seccion" id="productos">
         <h2>
           Nuestras secciones
@@ -78,11 +105,11 @@
             <div class="imagen">
               <img
                 src="remeranueva.png"
-                alt="Remeras"
-              >
+                alt="Kipás"
+              />
             </div>
             <h3>
-              kipás
+              Kipás
             </h3>
           </a>
           <a href="joyeria.html" class="producto">
@@ -90,441 +117,361 @@
               <img
                 src="collar.png"
                 alt="Joyería"
-              >
+              />
             </div>
             <h3>
               Joyería
             </h3>
           </a>
           <a href="libros.html" class="producto">
-
-
             <div class="imagen">
-
-
               <img
                 src="descarga.png"
                 alt="Libros"
-              >
-
-
+              />
             </div>
-
-
             <h3>
               Libros
             </h3>
-
-
           </a>
-
-
-
         </div>
-
-
       </section>
 
-
-
-      <!-- DONACIONES -->
       <section class="newsletter" id="contacto">
-
-
         <div class="contenedor">
-
-
           <h2>
             Donaciones
           </h2>
-
-
           <p>
             Enterate de nuevos productos, lanzamientos y promociones.
           </p>
-
-
           <form
             onsubmit="event.preventDefault(); mostrarMensajeSuscripcion(this);"
           >
-
-
             <input
               type="email"
               placeholder="Tu correo electrónico"
               required
-            >
-
-
+            />
             <button type="submit">
               Donar
             </button>
-
-
           </form>
-
-
         </div>
-
-
       </section>
-
-
     </main>
 
-
-
-    <!-- CARRITO -->
-    <div id="carrito-panel" class="carrito-panel">
-
-
-      <div class="carrito-contenido">
-
-
-        <button
-          type="button"
-          class="cerrar-carrito"
-          onclick="cerrarCarrito()"
-          aria-label="Cerrar carrito"
-        >
-          ×
-        </button>
-
-
-        <h3>
-          Tu carrito
-        </h3>
-
-
-        <ul id="lista-carrito"></ul>
-
-
-        <p id="total-carrito">
-          <strong>Total: $0</strong>
-        </p>
-
-
-        <div class="botones-carrito">
-
-
-          <button
-            type="button"
-            onclick="vaciarCarrito()"
-          >
-            Vaciar carrito
-          </button>
-
-
-          <button
-            type="button"
-            onclick="cerrarCarrito()"
-          >
-            Seguir comprando
-          </button>
-
-
-        </div>
-
-
-      </div>
-
-
-    </div>
-
-
-
-    <!-- FOOTER -->
     <footer>
-
-
       <p>
         © 2026 Jewchetti Secret · Hecho con ❤️ desde Israel
       </p>
-
-
     </footer>
-
 
   </div>
 
+  <div id="panel-auth" class="panel-auth">
+    <div class="panel-auth-contenido">
+      <button
+        type="button"
+        class="cerrar-panel-auth"
+        onclick="cerrarPanelAuth()"
+        aria-label="Cerrar panel"
+      >
+        ×
+      </button>
 
+      <div id="panel-login" class="panel-forma">
+        <h3>Iniciar sesión</h3>
+        <form onsubmit="event.preventDefault(); loginUsuario(this);">
+          <label for="login-email">Email</label>
+          <input
+            type="email"
+            id="login-email"
+            name="email"
+            placeholder="tu@email.com"
+            required
+          />
 
-  <!-- JAVASCRIPT -->
+          <label for="login-password">Contraseña</label>
+          <input
+            type="password"
+            id="login-password"
+            name="password"
+            placeholder="Tu contraseña"
+            required
+          />
+
+          <button type="submit" class="btn-auth">
+            Ingresar
+          </button>
+        </form>
+        <p class="texto-cambio-panel">
+          ¿No tenés cuenta?
+          <button type="button" onclick="mostrarRegistroDesdeLogin()">
+            Crear cuenta
+          </button>
+        </p>
+      </div>
+
+      <div id="panel-registro" class="panel-forma oculto-panel">
+        <h3>Crear cuenta</h3>
+        <form onsubmit="event.preventDefault(); registrarUsuario(this);">
+          <label for="registro-nombre">Nombre</label>
+          <input
+            type="text"
+            id="registro-nombre"
+            name="nombre"
+            placeholder="Tu nombre"
+            required
+          />
+
+          <label for="registro-email">Email</label>
+          <input
+            type="email"
+            id="registro-email"
+            name="email"
+            placeholder="tu@email.com"
+            required
+          />
+
+          <label for="registro-password">Contraseña</label>
+          <input
+            type="password"
+            id="registro-password"
+            name="password"
+            placeholder="Contraseña"
+            required
+          />
+
+          <label for="registro-password2">Repetir contraseña</label>
+          <input
+            type="password"
+            id="registro-password2"
+            name="password2"
+            placeholder="Repetir contraseña"
+            required
+          />
+
+          <button type="submit" class="btn-auth">
+            Crear cuenta
+          </button>
+        </form>
+        <p class="texto-cambio-panel">
+          ¿Ya tenés cuenta?
+          <button type="button" onclick="mostrarLoginDesdeRegistro()">
+            Iniciar sesión
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="carrito-panel" class="carrito-panel">
+    <div class="carrito-contenido">
+      <button
+        type="button"
+        class="cerrar-carrito"
+        onclick="cerrarCarrito()"
+        aria-label="Cerrar carrito"
+      >
+        ×
+      </button>
+
+      <h3>
+        Tu carrito
+      </h3>
+
+      <ul id="lista-carrito"></ul>
+
+      <p id="total-carrito">
+        <strong>Total: $0</strong>
+      </p>
+
+      <div class="botones-carrito">
+        <button
+          type="button"
+          onclick="vaciarCarrito()"
+        >
+          Vaciar carrito
+        </button>
+
+        <button
+          type="button"
+          onclick="cerrarCarrito()"
+        >
+          Seguir comprando
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
-
-
     let carrito = [];
 
-
-
-    // ENTRAR A LA TIENDA
     function continuarTienda() {
-
-
-      const pantallaBienvenida =
-        document.getElementById("pantallaBienvenida");
-
-
-      const contenidoWeb =
-        document.getElementById("contenidoWeb");
-
-
-      const audio =
-        document.getElementById("audioBienvenida");
-
-
-      const mensajeAudio =
-        document.getElementById("mensajeAudio");
-
-
+      const pantallaBienvenida = document.getElementById("pantallaBienvenida");
+      const contenidoWeb = document.getElementById("contenidoWeb");
+      const audio = document.getElementById("audioBienvenida");
+      const mensajeAudio = document.getElementById("mensajeAudio");
 
       audio.volume = 0.35;
 
-
-
-      audio.play()
+      audio
+        .play()
         .then(function () {
-
-
-          console.log(
-            "El audio comenzó correctamente."
-          );
-
-
+          console.log("El audio comenzó correctamente.");
         })
         .catch(function (error) {
-
-
-          console.log(
-            "No se pudo reproducir el audio:",
-            error
-          );
-
-
+          console.log("No se pudo reproducir el audio:", error);
           mensajeAudio.textContent =
             "No se pudo iniciar la música. Verificá que el archivo MP3 esté en la misma carpeta que index.html.";
-
-
         });
 
-
-
-      pantallaBienvenida.classList.add(
-        "salir-bienvenida"
-      );
-
-
+      pantallaBienvenida.classList.add("salir-bienvenida");
 
       setTimeout(function () {
-
-
         pantallaBienvenida.style.display = "none";
-
-
         contenidoWeb.classList.remove("oculto");
-
-
         window.scrollTo(0, 0);
-
-
       }, 500);
-
-
     }
 
-
-
-    // AGREGAR AL CARRITO
     function agregarCarrito(btn) {
-
-
-      const articulo =
-        btn.closest(".producto");
-
-
-      const nombre =
-        articulo.dataset.nombre;
-
-
-      const precio =
-        parseInt(articulo.dataset.precio);
-
-
+      const articulo = btn.closest(".producto");
+      const nombre = articulo.dataset.nombre;
+      const precio = parseInt(articulo.dataset.precio);
 
       carrito.push({
-
-
         nombre: nombre,
-
-
-        precio: precio
-
-
+        precio: precio,
       });
 
+      document.getElementById("contador").textContent = carrito.length;
 
-
-      document.getElementById("contador").textContent =
-        carrito.length;
-
-
-
-      alert(
-        "Agregado al carrito: " + nombre
-      );
-
-
+      alert("Agregado al carrito: " + nombre);
     }
 
-
-
-    // MOSTRAR CARRITO
     function mostrarCarrito(event) {
-
-
       event.preventDefault();
 
-
-
-      const panel =
-        document.getElementById("carrito-panel");
-
-
-      const lista =
-        document.getElementById("lista-carrito");
-
-
-      const totalCarrito =
-        document.getElementById("total-carrito");
-
-
+      const panel = document.getElementById("carrito-panel");
+      const lista = document.getElementById("lista-carrito");
+      const totalCarrito = document.getElementById("total-carrito");
 
       lista.innerHTML = "";
 
-
-
       let total = 0;
 
-
-
       if (carrito.length === 0) {
-
-
-        const itemVacio =
-          document.createElement("li");
-
-
-        itemVacio.className =
-          "carrito-vacio";
-
-
-        itemVacio.textContent =
-          "Todavía no agregaste productos.";
-
-
+        const itemVacio = document.createElement("li");
+        itemVacio.className = "carrito-vacio";
+        itemVacio.textContent = "Todavía no agregaste productos.";
         lista.appendChild(itemVacio);
-
-
       } else {
-
-
         carrito.forEach(function (item) {
-
-
           total += item.precio;
 
-
-
-          const li =
-            document.createElement("li");
-
-
+          const li = document.createElement("li");
 
           li.innerHTML =
             "<span>" +
             item.nombre +
             "</span>" +
-
-
             "<strong>$" +
             item.precio.toLocaleString("es-AR") +
             "</strong>";
 
-
-
           lista.appendChild(li);
-
-
         });
-
-
       }
 
-
-
       totalCarrito.innerHTML =
-        "<strong>Total: $" +
-        total.toLocaleString("es-AR") +
-        "</strong>";
-
-
+        "<strong>Total: $" + total.toLocaleString("es-AR") + "</strong>";
 
       panel.style.display = "flex";
-
-
     }
 
-
-
-    // CERRAR CARRITO
     function cerrarCarrito() {
-
-
-      document.getElementById(
-        "carrito-panel"
-      ).style.display = "none";
-
-
+      document.getElementById("carrito-panel").style.display = "none";
     }
 
-
-
-    // VACIAR CARRITO
     function vaciarCarrito() {
-
-
       carrito = [];
-
-
-
-      document.getElementById(
-        "contador"
-      ).textContent = "0";
-
-
-
+      document.getElementById("contador").textContent = "0";
       cerrarCarrito();
-
-
     }
 
-
-
-    // MENSAJE DE DONACIÓN
     function mostrarMensajeSuscripcion(formulario) {
-
-
       formulario.innerHTML =
         "<p class='mensaje-suscripcion'>" +
         "¡Gracias por suscribirte a Jewchetti Secret!" +
         "</p>";
-
-
     }
 
+    function abrirPanelLogin() {
+      const panel = document.getElementById("panel-auth");
+      const login = document.getElementById("panel-login");
+      const registro = document.getElementById("panel-registro");
 
+      login.classList.remove("oculto-panel");
+      registro.classList.add("oculto-panel");
+
+      panel.style.display = "flex";
+    }
+
+    function abrirPanelRegistro() {
+      const panel = document.getElementById("panel-auth");
+      const login = document.getElementById("panel-login");
+      const registro = document.getElementById("panel-registro");
+
+      registro.classList.remove("oculto-panel");
+      login.classList.add("oculto-panel");
+
+      panel.style.display = "flex";
+    }
+
+    function cerrarPanelAuth() {
+      document.getElementById("panel-auth").style.display = "none";
+    }
+
+    function mostrarRegistroDesdeLogin() {
+      const login = document.getElementById("panel-login");
+      const registro = document.getElementById("panel-registro");
+
+      login.classList.add("oculto-panel");
+      registro.classList.remove("oculto-panel");
+    }
+
+    function mostrarLoginDesdeRegistro() {
+      const login = document.getElementById("panel-login");
+      const registro = document.getElementById("panel-registro");
+
+      registro.classList.add("oculto-panel");
+      login.classList.remove("oculto-panel");
+    }
+
+    function loginUsuario(form) {
+      const email = form.email.value.trim();
+      const password = form.password.value;
+
+      alert("Login simulado exitoso para: " + email);
+      cerrarPanelAuth();
+    }
+
+    function registrarUsuario(form) {
+      const nombre = form.nombre.value.trim();
+      const email = form.email.value.trim();
+      const pass1 = form.password.value;
+      const pass2 = form.password2.value;
+
+      if (pass1 !== pass2) {
+        alert("Las contraseñas no coinciden.");
+        return;
+      }
+
+      alert("Cuenta creada (simulada) para: " + nombre + " (" + email + ")");
+      cerrarPanelAuth();
+    }
   </script>
-
-
 </body>
 </html>
