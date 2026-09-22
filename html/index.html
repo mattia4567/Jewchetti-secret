@@ -9,40 +9,7 @@
 
 <body>
 
-  <section id="pantallaBienvenida" class="pantalla-bienvenida">
-    <div class="fondo-bienvenida"></div>
-    <div class="bienvenida-contenido">
-      <img
-        src="banderainicioweb.png"
-        alt="Imagen de bienvenida a DOROT"
-        class="bienvenida-img"
-      />
-      <div class="bienvenida-texto">
-        <p class="bienvenida-subtitulo">
-          ✡ DOROT
-        </p>
-        <h1>Bienvenido a nuestra tienda</h1>
-        <p>
-          Indumentaria, accesorios y tradición judía para celebrar tu identidad
-          con estilo.
-        </p>
-        <button id="btnContinuar" type="button" onclick="continuarTienda()">
-          Entrar a la tienda
-        </button>
-
-        <p id="mensajeAudio" class="mensaje-audio">
-          Presioná el botón para ingresar con música.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <audio id="audioBienvenida" loop preload="auto">
-    <source src="Hava Nagila Original.mp3" type="audio/mpeg" />
-    Tu navegador no soporta la reproducción de audio.
-  </audio>
-
-  <div id="contenidoWeb" class="contenido-web oculto">
+  <div id="contenidoWeb" class="contenido-web">
 
     <header>
       <div class="contenedor header">
@@ -298,6 +265,7 @@
         <button
           type="button"
           onclick="cerrarCarrito()"
+          class="btn-seguir-comprando"
         >
           Seguir comprando
         </button>
@@ -307,34 +275,6 @@
 
   <script>
     let carrito = [];
-
-    function continuarTienda() {
-      const pantallaBienvenida = document.getElementById("pantallaBienvenida");
-      const contenidoWeb = document.getElementById("contenidoWeb");
-      const audio = document.getElementById("audioBienvenida");
-      const mensajeAudio = document.getElementById("mensajeAudio");
-
-      audio.volume = 0.35;
-
-      audio
-        .play()
-        .then(function () {
-          console.log("El audio comenzó correctamente.");
-        })
-        .catch(function (error) {
-          console.log("No se pudo reproducir el audio:", error);
-          mensajeAudio.textContent =
-            "No se pudo iniciar la música. Verificá que el archivo MP3 esté en la misma carpeta que index.html.";
-        });
-
-      pantallaBienvenida.classList.add("salir-bienvenida");
-
-      setTimeout(function () {
-        pantallaBienvenida.style.display = "none";
-        contenidoWeb.classList.remove("oculto");
-        window.scrollTo(0, 0);
-      }, 500);
-    }
 
     function agregarCarrito(btn) {
       const articulo = btn.closest(".producto");
